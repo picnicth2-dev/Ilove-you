@@ -10,7 +10,7 @@ def home():
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>I Love You</title>
 
 <style>
@@ -26,30 +26,42 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    font-family: Arial, sans-serif;
 }
 
+/* ทำให้ SVG พอดีจอมือถือ */
 svg {
-    width: 90vw;
-    max-width: 900px;
+    width: 100vw;
+    height: auto;
+    max-height: 60vh;
 }
 
-path {
+/* เส้นหลัก */
+.draw {
     fill: none;
     stroke: #ff1a75;
-    stroke-width: 6;
+    stroke-width: 4;
     stroke-linecap: round;
     stroke-linejoin: round;
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
+    stroke-dasharray: 800;
+    stroke-dashoffset: 800;
     animation: draw 4s ease forwards;
 }
 
-path:nth-child(2) { animation-delay: 0.4s; }
-path:nth-child(3) { animation-delay: 0.8s; }
-path:nth-child(4) { animation-delay: 1.2s; }
-path:nth-child(5) { animation-delay: 1.6s; }
-path:nth-child(6) { animation-delay: 2.0s; }
+/* เส้นเงา (แรเงา) */
+.shade {
+    fill: none;
+    stroke: rgba(255, 26, 117, 0.25);
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+/* delay ทีละคำ */
+.draw:nth-child(2) { animation-delay: 0.3s; }
+.draw:nth-child(3) { animation-delay: 0.6s; }
+.draw:nth-child(4) { animation-delay: 0.9s; }
+.draw:nth-child(5) { animation-delay: 1.2s; }
+.draw:nth-child(6) { animation-delay: 1.5s; }
 
 @keyframes draw {
     to {
@@ -59,10 +71,12 @@ path:nth-child(6) { animation-delay: 2.0s; }
 
 .subtitle {
     position: fixed;
-    bottom: 10%;
+    bottom: 8%;
+    width: 100%;
     text-align: center;
+    font-family: Arial, sans-serif;
     color: #555;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     opacity: 0;
     animation: fadeIn 1.5s ease forwards;
     animation-delay: 4.2s;
@@ -76,38 +90,39 @@ path:nth-child(6) { animation-delay: 2.0s; }
 
 <body>
 
-<!-- SVG เขียนคำว่า I LOVE YOU -->
-<svg viewBox="0 0 900 200">
-    <!-- I -->
-    <path d="M50 40 L50 160" />
+<svg viewBox="0 0 900 200" preserveAspectRatio="xMidYMid meet">
 
-    <!-- L -->
-    <path d="M150 40 L150 160 L220 160" />
+    <!-- เงา -->
+    <g transform="translate(2,2)">
+        <path class="shade" d="M50 40 L50 160" />
+        <path class="shade" d="M150 40 L150 160 L220 160" />
+        <path class="shade" d="M320 100 m -35,0 a 35,35 0 1,0 70,0 a 35,35 0 1,0 -70,0" />
+        <path class="shade" d="M420 40 L460 160 L500 40" />
+        <path class="shade" d="M600 40 L600 160
+                                M600 40 L680 40
+                                M600 100 L660 100
+                                M600 160 L680 160" />
+        <path class="shade" d="M760 40 L800 100 L840 40
+                                M800 100 L800 160
+                                M860 100 a 25,25 0 1,0 0.1,0" />
+    </g>
 
-    <!-- O -->
-    <path d="M320 100
-             m -40, 0
-             a 40,40 0 1,0 80,0
-             a 40,40 0 1,0 -80,0" />
-
-    <!-- V -->
-    <path d="M420 40 L460 160 L500 40" />
-
-    <!-- E -->
-    <path d="M600 40 L600 160
-             M600 40 L680 40
-             M600 100 L660 100
-             M600 160 L680 160" />
-
-    <!-- YOU -->
-    <path d="M760 40 L800 100 L840 40
-             M800 100 L800 160
-             M860 100
-             a 30,30 0 1,0 0.1,0" />
+    <!-- เส้นจริง -->
+    <path class="draw" d="M50 40 L50 160" />
+    <path class="draw" d="M150 40 L150 160 L220 160" />
+    <path class="draw" d="M320 100 m -35,0 a 35,35 0 1,0 70,0 a 35,35 0 1,0 -70,0" />
+    <path class="draw" d="M420 40 L460 160 L500 40" />
+    <path class="draw" d="M600 40 L600 160
+                           M600 40 L680 40
+                           M600 100 L660 100
+                           M600 160 L680 160" />
+    <path class="draw" d="M760 40 L800 100 L840 40
+                           M800 100 L800 160
+                           M860 100 a 25,25 0 1,0 0.1,0" />
 </svg>
 
 <div class="subtitle">
-    ร๊ากเธอตลอดไปจุ๊บมั่วว ❤️
+    คุณคือคนพิเศษที่สุดของเค้านะ 🤍
 </div>
 
 </body>
