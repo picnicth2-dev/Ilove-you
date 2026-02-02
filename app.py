@@ -59,6 +59,12 @@ button {
     margin-left: 10px;
 }
 
+#backBtn {
+    background: #ffd1e6;
+    color: #ff4d94;
+    margin-top: 15px;
+}
+
 .fullscreen {
     position: fixed;
     top: 0;
@@ -76,12 +82,16 @@ button {
 <div class="container" id="box">
     <h1 id="question">เธอร๊ากเค้าม๊ายอ่าา ❤️</h1>
 
-    <div class="buttons">
+    <div class="buttons" id="mainButtons">
         <button id="yesBtn" onclick="yesClick()">Yes</button>
         <button id="noBtn" onclick="noClick()">No</button>
     </div>
 
     <p id="emoji" style="font-size:2rem;margin-top:15px;"></p>
+
+    <button id="backBtn" onclick="goBackToStep2()" style="display:none;">
+        ย้อนกลับ ↩️
+    </button>
 </div>
 
 <script>
@@ -89,32 +99,64 @@ let noCount = 0;
 
 function noClick() {
     noCount++;
+    updateNoState();
+}
+
+function updateNoState() {
     const emoji = document.getElementById("emoji");
     const question = document.getElementById("question");
     const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
+    const backBtn = document.getElementById("backBtn");
 
     if (noCount === 1) {
         emoji.innerText = "🥺💗";
         question.innerText = "แน่ใจนะหรออ…";
-    } else if (noCount === 2) {
+    } 
+    else if (noCount === 2) {
         emoji.innerText = "😢👉👈";
         question.innerText = "คิดอีกทีดีม๊าย";
-    } else if (noCount === 3) {
+    } 
+    else if (noCount === 3) {
         emoji.innerText = "😭💞";
         question.innerText = "ใจร้ายเกินไปแล้วอ่า";
-    } else if (noCount === 4) {
+    } 
+    else if (noCount === 4) {
         emoji.innerText = "🥹❤️‍🩹";
         question.innerText = "ครั้งสุดท้ายแล้วจริงๆน้าา";
-    } else if (noCount >= 5) {
+    } 
+    else if (noCount >= 5) {
         question.innerText = "เธอร๊ากเค้าม๊ายย ❤️";
         emoji.innerText = "💘💘💘";
 
         yesBtn.classList.add("fullscreen");
         yesBtn.innerText = "ไม่น่ารักเลยอ่ะ😾";
 
-        noBtn.remove();
+        if (noBtn) noBtn.remove();
+
+        backBtn.style.display = "inline-block";
     }
+}
+
+function goBackToStep2() {
+    noCount = 2;
+
+    const yesBtn = document.getElementById("yesBtn");
+    yesBtn.classList.remove("fullscreen");
+    yesBtn.innerText = "Yes";
+
+    const buttonsDiv = document.getElementById("mainButtons");
+    if (!document.getElementById("noBtn")) {
+        const noBtn = document.createElement("button");
+        noBtn.id = "noBtn";
+        noBtn.innerText = "No";
+        noBtn.onclick = noClick;
+        buttonsDiv.appendChild(noBtn);
+    }
+
+    document.getElementById("backBtn").style.display = "none";
+
+    updateNoState();
 }
 
 function yesClick() {
@@ -123,7 +165,7 @@ function yesClick() {
             <h1 style="font-size:4rem;color:#ff4d94;">เย้!!! ❤️</h1>
             <p style="font-size:2rem;">ร๊ากกันน้าา น่ารักที่สุด จุ๊บมั่ว😘 💖</p>
 
-            <button onclick="restart()"
+            <button onclick="location.reload()"
                 style="
                     margin-top:30px;
                     padding:15px 35px;
@@ -138,10 +180,6 @@ function yesClick() {
             </button>
         </div>
     `;
-}
-
-function restart() {
-    location.reload();
 }
 </script>
 </body>
