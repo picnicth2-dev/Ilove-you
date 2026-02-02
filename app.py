@@ -111,7 +111,7 @@ function noClick() {
         emoji.innerText = "💘💘💘";
 
         yesBtn.classList.add("fullscreen");
-        yesBtn.innerText = "รัก ❤️";
+        yesBtn.innerText = "ไม่น่ารักเลยอ่ะ😾";
 
         noBtn.remove();
     }
