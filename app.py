@@ -117,7 +117,7 @@ function noClick() {
         yesBtn.classList.add("fullscreen");
         yesBtn.innerText = "รัก ❤️";
 
-        noBtn.style.display = "none";
+        noBtn.remove();
     }
 }
 
