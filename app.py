@@ -1,128 +1,96 @@
 import turtle
 import time
 
-# ---------- Screen ----------
+# ตั้งค่าหน้าจอ
 screen = turtle.Screen()
-screen.title("I Love You ❤️")
-screen.bgcolor("white")
+screen.title("I Love You - Special Message")
+screen.bgcolor("white")  # ปรับเป็นสีขาวตามคำขอครับคุณปิคนิค
 screen.setup(900, 500)
 screen.tracer(0)
 
-# ---------- Pen สำหรับวาดข้อความ ----------
 pen = turtle.Turtle()
 pen.hideturtle()
 pen.speed(0)
 pen.pensize(4)
-pen.color("black")
 
-# ---------- Loading Screen ----------
 def loading_screen():
     pen.clear()
     pen.penup()
+    pen.color("#555") # สีเทาสำหรับตัวหนังสือ Loading
     pen.goto(0, 40)
-    pen.write("Loading...", align="center",
-              font=("Arial", 24, "bold"))
+    pen.write("Loading Sweetness...", align="center", font=("Arial", 20, "bold"))
+    
+    # วาดแถบโหลด
+    pen.goto(-200, -10)
+    pen.pendown()
+    for _ in range(2):
+        pen.forward(400)
+        pen.right(90)
+        pen.forward(20)
+        pen.right(90)
+    pen.penup()
 
     bar = turtle.Turtle()
     bar.hideturtle()
     bar.speed(0)
-    bar.pensize(10)
-    bar.color("pink")
-
+    bar.color("#ff3385") # สีชมพูโหลด
     bar.penup()
-    bar.goto(-200, 0)
-    bar.pendown()
-
+    bar.goto(-200, -20)
+    
     for _ in range(40):
+        bar.begin_fill()
+        for _ in range(2):
+            bar.forward(10)
+            bar.left(90)
+            bar.forward(20)
+            bar.left(90)
+        bar.end_fill()
         bar.forward(10)
         screen.update()
         time.sleep(0.04)
-
+    
     bar.clear()
     pen.clear()
 
-# ---------- ฟังก์ชันวาดเส้น ----------
-def draw_line(x, y, heading, length):
+def show_final_message():
+    # เขียนคำว่า I LOVE YOU ตัวใหญ่กลางจอ
     pen.penup()
-    pen.goto(x, y)
-    pen.setheading(heading)
-    pen.pendown()
-    pen.forward(length)
+    pen.goto(0, 20)
+    pen.color("#ff1a75") # สีชมพูเข้มเด่นบนพื้นขาว
+    pen.write("I LOVE YOU", align="center", font=("Verdana", 70, "bold"))
+    
+    pen.goto(0, -60)
+    pen.color("#333")
+    pen.write("วาดรูปหัวใจคืนให้เค้าหน่อยสิ ❤️", align="center", font=("Tahoma", 18, "normal"))
 
-# ---------- วาด I LOVE YOU ----------
-def draw_love_you():
-    # I
-    draw_line(-350, -50, 270, 100)
-
-    # L
-    draw_line(-300, -50, 270, 100)
-    draw_line(-300, -150, 0, 50)
-
-    # O
-    pen.penup()
-    pen.goto(-200, -150)
-    pen.pendown()
-    pen.circle(40)
-
-    # V
-    draw_line(-100, -50, 300, 100)
-    draw_line(-100, -50, 240, 100)
-
-    # E
-    draw_line(0, -50, 270, 100)
-    draw_line(0, -50, 0, 50)
-    draw_line(0, -100, 0, 40)
-    draw_line(0, -150, 0, 50)
-
-    # Y
-    draw_line(120, -50, 300, 60)
-    draw_line(120, -50, 240, 60)
-    draw_line(120, -100, 270, 60)
-
-    # O
-    pen.penup()
-    pen.goto(200, -150)
-    pen.pendown()
-    pen.circle(35)
-
-    # U
-    draw_line(260, -50, 270, 100)
-    draw_line(260, -150, 0, 50)
-    draw_line(310, -50, 270, 100)
-
-# ---------- Turtle สำหรับวาดด้วยเมาส์ ----------
+# ตั้งค่าปากกาสำหรับให้แฟนคุณวาด
 drawer = turtle.Turtle()
-drawer.hideturtle()
-drawer.speed(0)
-drawer.pensize(4)
-drawer.color("red")
+drawer.shape("circle")
+drawer.shapesize(0.5)
+drawer.color("#e6005c")
+drawer.pensize(6)
+drawer.penup()
 
 def start_draw(x, y):
-    drawer.penup()
     drawer.goto(x, y)
     drawer.pendown()
-    screen.ondrag(draw)
 
 def draw(x, y):
     drawer.goto(x, y)
     screen.update()
 
-def stop_draw(x, y):
-    screen.ondrag(None)
+def release_draw(x, y):
     drawer.penup()
 
-# ---------- RUN ----------
+# เริ่มทำงาน
 loading_screen()
-
-pen.penup()
-pen.goto(0, 200)
-pen.write("Click & drag mouse to draw ❤️",
-          align="center", font=("Arial", 16, "bold"))
-
-draw_love_you()
+show_final_message()
 screen.update()
 
-screen.onmousedown(start_draw)
-screen.onmouseup(stop_draw)
+# ระบบ Interactive
+screen.listen()
+screen.onscreenclick(start_draw, 1) # คลิกซ้ายเริ่มวาด
+drawer.ondrag(draw)                # ลากเมาส์เพื่อเขียน
+screen.onclick(release_draw, 3)      # คลิกขวาเพื่อยกปากกา
 
 screen.mainloop()
