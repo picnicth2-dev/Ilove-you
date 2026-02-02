@@ -9,7 +9,7 @@ html_content = """
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>เธอร๊ากเค้าม้ายยย</title>
+<title>รักเค้ามั้ย</title>
 
 <style>
 body {
@@ -74,7 +74,7 @@ button {
 
 <body>
 <div class="container" id="box">
-    <h1 id="question">รักเค้าม๊ายยย❤️</h1>
+    <h1 id="question">เธอร๊ากเค้าม๊ายอ่าา ❤️</h1>
 
     <div class="buttons">
         <button id="yesBtn" onclick="yesClick()">Yes</button>
@@ -96,22 +96,18 @@ function noClick() {
 
     if (noCount === 1) {
         emoji.innerText = "🥺💗";
-        question.innerText = "แน่ใจนะ…";
-    } 
-    else if (noCount === 2) {
+        question.innerText = "แน่ใจนะหรออ…";
+    } else if (noCount === 2) {
         emoji.innerText = "😢👉👈";
-        question.innerText = "คิดอีกทีได้ไหม";
-    } 
-    else if (noCount === 3) {
+        question.innerText = "คิดอีกทีดีม๊าย";
+    } else if (noCount === 3) {
         emoji.innerText = "😭💞";
-        question.innerText = "ใจร้ายไปแล้วนะ";
-    } 
-    else if (noCount === 4) {
+        question.innerText = "ใจร้ายเกินไปแล้วอ่า";
+    } else if (noCount === 4) {
         emoji.innerText = "🥹❤️‍🩹";
-        question.innerText = "ครั้งสุดท้ายแล้วจริง ๆ";
-    } 
-    else if (noCount === 5) {
-        question.innerText = "เธอรักเค้าไหม ❤️";
+        question.innerText = "ครั้งสุดท้ายแล้วจริงๆน้าา";
+    } else if (noCount >= 5) {
+        question.innerText = "เธอร๊ากเค้าม๊ายย ❤️";
         emoji.innerText = "💘💘💘";
 
         yesBtn.classList.add("fullscreen");
@@ -125,9 +121,27 @@ function yesClick() {
     document.body.innerHTML = `
         <div style="text-align:center;">
             <h1 style="font-size:4rem;color:#ff4d94;">เย้!!! ❤️</h1>
-            <p style="font-size:2rem;">เรารักกันน้าน่ารักที่สุด 💖</p>
+            <p style="font-size:2rem;">ร๊ากกันน้าา น่ารักที่สุด จุ๊บมั่ว😘 💖</p>
+
+            <button onclick="restart()"
+                style="
+                    margin-top:30px;
+                    padding:15px 35px;
+                    font-size:1.3rem;
+                    border:none;
+                    border-radius:12px;
+                    background:#ff9acb;
+                    color:white;
+                    cursor:pointer;
+                ">
+                ตอบอีกครั้ง 🔁
+            </button>
         </div>
     `;
+}
+
+function restart() {
+    location.reload();
 }
 </script>
 </body>
