@@ -9,7 +9,7 @@ html_content = """
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>คุณรักฉันไหม</title>
+<title>เธอร๊ากเค้าม้ายยย</title>
 
 <style>
 body {
@@ -74,7 +74,7 @@ button {
 
 <body>
 <div class="container" id="box">
-    <h1 id="question">Will you be my Valentine? ❤️</h1>
+    <h1 id="question">รักเค้าม๊ายยย❤️</h1>
 
     <div class="buttons">
         <button id="yesBtn" onclick="yesClick()">Yes</button>
@@ -111,7 +111,7 @@ function noClick() {
         question.innerText = "ครั้งสุดท้ายแล้วจริง ๆ";
     } 
     else if (noCount === 5) {
-        question.innerText = "คุณรักฉันไหม ❤️";
+        question.innerText = "เธอรักเค้าไหม ❤️";
         emoji.innerText = "💘💘💘";
 
         yesBtn.classList.add("fullscreen");
@@ -125,7 +125,7 @@ function yesClick() {
     document.body.innerHTML = `
         <div style="text-align:center;">
             <h1 style="font-size:4rem;color:#ff4d94;">เย้!!! ❤️</h1>
-            <p style="font-size:2rem;">เรารักกันนะ 💖</p>
+            <p style="font-size:2rem;">เรารักกันน้าน่ารักที่สุด 💖</p>
         </div>
     `;
 }
