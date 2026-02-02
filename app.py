@@ -7,11 +7,11 @@ app = Flask(__name__)
 def home():
     return """
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>รักนะคุณแฟน</title>
+    <title>For You</title>
     <style>
         body {
             background-color: white;
@@ -21,43 +21,40 @@ def home():
             align-items: center;
             height: 100vh;
             margin: 0;
-            font-family: 'Tahoma', sans-serif;
+            /* ใช้ Font แบบตัวเหลี่ยม (Monospace) */
+            font-family: 'Courier New', Courier, monospace;
             overflow: hidden;
+            text-align: center;
+        }
+        .container {
+            width: 90%; /* คุมขนาดไม่ให้ล้นขอบมือถือ */
         }
         .heart {
-            font-size: 100px;
+            font-size: 60px;
             color: #ff1a75;
             animation: beat 0.8s infinite;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+        }
+        h1 {
+            color: #ff3385;
+            /* ปรับขนาดตัวอักษรให้พอดีมือถืออัตโนมัติ */
+            font-size: 10vw; 
+            font-weight: bold;
+            letter-spacing: -2px;
+            margin: 0;
+            text-transform: uppercase;
         }
         .message {
-            font-size: 24px;
-            font-weight: bold;
-            color: #ff3385;
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 3px solid #ff3385;
-            width: 0;
-            animation: typing 3s steps(30) forwards, blink 0.5s step-end infinite;
-        }
-        .sub-message {
             margin-top: 15px;
             color: #666;
-            font-size: 18px;
+            font-size: 14px;
+            letter-spacing: 1px;
             opacity: 0;
-            animation: fadeIn 2s forwards 3.5s;
+            animation: fadeIn 2s forwards 1s;
         }
         @keyframes beat {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
-        }
-        @keyframes blink {
-            from, to { border-color: transparent; }
-            50% { border-color: #ff3385; }
+            50% { transform: scale(1.1); }
         }
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -66,10 +63,11 @@ def home():
     </style>
 </head>
 <body>
-    <div class="heart">❤️</div>
-    <div class="message">รักเธอที่สุดในจักรวาล 💖</div>
-    <div class="sub-message">เธอน่าร๊ากที่สุดดดดดดเลยละ ✨</div>
-    <div class="sub-message" style="color: red; animation-delay: 5s;">อยู่ด้วยกันไปนานๆน้าาอ้วนน จุ๊บมั่ว❤️</div>
+    <div class="container">
+        <div class="heart">❤️</div>
+        <h1>I LOVE YOU SO</h1>
+        <div class="message">YOU ARE MY EVERYTHING</div>
+    </div>
 </body>
 </html>
 """
